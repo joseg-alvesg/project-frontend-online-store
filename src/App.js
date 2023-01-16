@@ -4,11 +4,12 @@ import Checkout from './pages/Checkout';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import ShoppingCart from './pages/ShoppingCart';
+import './App.css';
 
 // import { getCategories, getProductsFromCategoryAndQuery } from './services//api';
 function App() {
   return (
-    <div>
+    <div className="App">
       <Switch>
         <Route exact path="/" component={ Home } />
         <Route exact path="/shoppingCart" component={ ShoppingCart } />

@@ -8,6 +8,11 @@ import { getCategories, getCategoryId,
   getProductsFromCategoryAndQuery } from '../services/api';
 import sumQty from '../services/helpers';
 
+import styles from './Home.module.css';
+import carrinho from '../images/carrinho.svg';
+import logo from '../images/logo.svg';
+import lupa from '../images/lupa.svg';
+
 export default class Home extends Component {
   state = {
     search: '',
@@ -78,61 +83,79 @@ export default class Home extends Component {
   render() {
     const { search, apiResults, categories, renderQty } = this.state;
     return (
-      <div>
-        {apiResults.length < 1
-         && (
-           <span data-testid="home-initial-message">
-             Digite algum termo de pesquisa ou escolha uma categoria.
-           </span>
-         )}
+      <div className={ styles.homeContainer }>
 
-        <section>
+        <div className={ styles.headerContainer }>
 
-          <Button
-            buttonText="Buscar"
-            onSaveButton={ this.onSaveButton }
-            testid="query-button"
-          />
-          {' '}
-          <span data-testid="shopping-cart-size">{renderQty}</span>
-          <Input value={ search } onInputChange={ this.onInputChange } />
-        </section>
+          <section className={ styles.search }>
+            <Input value={ search } onInputChange={ this.onInputChange } />
+            <Button
+              buttonText={ lupa }
+              onSaveButton={ this.onSaveButton }
+              testid="query-button"
+            />
+          </section>
 
-        {categories.length > 0 && categories.map((category) => (
-          <RadioButon
-            key={ category.id }
-            id={ category.id }
-            name={ category.name }
-            onInputChange={ this.onInputChange }
-          />
-        ))}
+          <img src={ logo } alt="" />
 
-        <Link to="/shoppingCart" data-testid="shopping-cart-button">Carrinho</Link>
+          <section className={ styles.cartBtn }>
+            <Link to="/shoppingCart" data-testid="shopping-cart-button">
+              <img src={ carrinho } alt="carrinho" />
+            </Link>
+            <span
+              data-testid="shopping-cart-size"
+              className={ styles.cartQty }
+            >
+              {renderQty}
+            </span>
+          </section>
+        </div>
 
-        {
-          apiResults.length > 0
-            ? apiResults.map((item) => (
-              <div key={ item.id }>
-                <ProductCard
-                  title={ item.title }
-                  price={ item.price }
-                  thumbnail={ item.thumbnail }
-                  id={ item.id }
-                  shipping={ item.shipping }
-                />
-                <button
-                  type="button"
-                  data-testid="product-add-to-cart"
-                  onClick={ () => this.addToCart(item) }
-                >
-                  Adicionar ao carrinho
-                </button>
-              </div>
+        <div className={ styles.categoryContainer }>
+          <section className={ styles.categories }>
+            <h2>Categorias</h2>
+            {categories.length > 0 && categories.map((category) => (
+              <RadioButon
+                key={ category.id }
+                id={ category.id }
+                name={ category.name }
+                onInputChange={ this.onInputChange }
+              />
+            ))}
+          </section>
 
-            ))
-            : (<span>Nenhum produto foi encontrado</span>)
-        }
+          <section className={ styles.products }>
+            {apiResults.length < 1
+              && (
+                <span data-testid="home-initial-message">
+                  Digite algum termo de pesquisa ou escolha uma categoria.
+                </span>
+              )}
+            {
+              apiResults.length > 0
+                ? apiResults.map((item) => (
+                  <div key={ item.id }>
+                    <ProductCard
+                      title={ item.title }
+                      price={ item.price }
+                      thumbnail={ item.thumbnail }
+                      id={ item.id }
+                      shipping={ item.shipping }
+                    />
+                    <button
+                      type="button"
+                      data-testid="product-add-to-cart"
+                      onClick={ () => this.addToCart(item) }
+                    >
+                      Adicionar ao carrinho
+                    </button>
+                  </div>
 
+                ))
+                : (<span>Nenhum produto foi encontrado</span>)
+            }
+          </section>
+        </div>
       </div>
     );
   }

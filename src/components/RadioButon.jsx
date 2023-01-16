@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 // import { getCategories } from '../services/api';
+import styles from './RadioButton.module.css';
 
 class RadioButon extends Component {
   // state = {
@@ -11,10 +12,10 @@ class RadioButon extends Component {
     const { id, name, onInputChange } = this.props;
     return (
       <label
+        className={ styles.label }
         htmlFor={ id }
         data-testid="category"
       >
-        {name}
         <input
           onChange={ onInputChange }
           type="radio"
@@ -22,6 +23,7 @@ class RadioButon extends Component {
           id={ id }
           value={ id }
         />
+        {name}
       </label>
     );
   }

@@ -11,7 +11,8 @@ export default class Button extends Component {
         data-testid={ testid }
       >
         { children }
-        { buttonText }
+        { buttonText && buttonText.includes('svg')
+          ? <img src={ buttonText } alt="" /> : buttonText }
       </button>
     );
   }

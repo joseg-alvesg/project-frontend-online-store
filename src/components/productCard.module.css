@@ -1,0 +1,36 @@
+.cardContainer {
+  background-color: white;
+  height: 90%;
+  margin-left: 10%;
+  position: relative;
+  width: 80%;
+}
+
+.cardContainer:nth-child(1) {
+  margin-top: 5%;
+}
+
+.freeshipping {
+  background-color: #003be5;
+  color: white;
+  left: 60%;
+  position: absolute;
+  top: 2%;
+}
+
+.cardContainer img {
+  margin-top: 20px;
+  width: 100px;
+}
+
+
+.price {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.price span {
+  font-size: 15px;
+  margin-right: 5px;
+  color: #b0b3bb;
+}

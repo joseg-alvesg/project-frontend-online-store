@@ -1,0 +1,66 @@
+.homeContainer {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.headerContainer {
+  align-items: center;
+  background-color: #003be5;
+  display: flex;
+  height: 15%;
+  justify-content: space-around;
+}
+
+.cartBtn {
+  display: flex;
+}
+
+.cartQty {
+  align-items: center;
+  background-color: #2fc18c;
+  border-radius: 50%;
+  display: flex;
+  height: 20px;
+  margin-left: -20%;
+  justify-content: center;
+  width: 20px;
+}
+
+
+.categoryContainer {
+  display: flex;
+  height: 100%;
+}
+
+.categories {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  width: 25%;
+}
+
+
+.products {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  overflow: auto;
+  text-align: center;
+  width: 75%;
+}
+
+.products button {
+  background-color: #31c28d;
+  border: none;
+  color: white;
+  height: 30px;
+  width: 80%;
+}
+
+.headerbtn {
+  background-color: red;
+  width: 2000px;
+}

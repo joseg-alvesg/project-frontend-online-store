@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import styles from './productCard.module.css';
 
 export default class ProductCard extends Component {
   render() {
     const { title, thumbnail, price, id, qty, addtocart, pathname,
       shipping: { free_shipping: freeshipping = false } = {} } = this.props; // {} nos shipping resolve problema de retorno undefined
     return (
-      <div data-testid="product">
+      <div data-testid="product" className={ styles.cardContainer }>
         {pathname
         && <Button
           buttonText="X"
@@ -21,7 +22,15 @@ export default class ProductCard extends Component {
         <h4 data-testid="shopping-cart-product-name">
           {title}
         </h4>
-        {freeshipping && <span data-testid="free-shipping">frete gratis</span>}
+        {freeshipping
+        && (
+          <span
+            className={ styles.freeshipping }
+            data-testid="free-shipping"
+          >
+            frete gratis
+
+          </span>)}
         {pathname && (
           <div>
             <Button
@@ -38,7 +47,10 @@ export default class ProductCard extends Component {
             />
           </div>
         )}
-        <p>{pathname ? `R$${price * qty}` : `R$${price}`}</p>
+        <p className={ styles.price }>
+          <span>R$</span>
+          {pathname ? price * qty : price}
+        </p>
       </div>
     );
   }
